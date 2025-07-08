@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta name="description" content="Large language models are susceptible to memorizing repeated sequences, posing privacy and copyright concerns. A popular mitigation strategy is to remove memorized information from specific neurons post-hoc. However, such approaches have shown limited success so far. In a controlled setting, we show that the memorization of \emph{natural} sequences (those that resemble linguistically plausible text) become \emph{mechanistically entangled} with general language abilities, thereby becoming challenging to remove post-hoc. In this work, we put forward a new paradigm of \seqtd that promotes isolation of memorization by design. We leverage a sequence identifier to activate a unique set of memorization neurons for each sequence across repetitions. By analyzing the dynamics of learning and forgetting, we argue that \seqtd facilitates clean isolation of memorized content, making it easier to remove without compromising general language capabilities. We implement \seqtd at the billion-parameter and billion-token scale, and observe both effective isolation and strong generalization. To our knowledge, this is the first proof-of-concept on real data demonstrating that simultaneous generalization and isolation is achievable. We open-source our code at http://github.com/grghosal/MemSinks">
+  <meta property="og:title" content="Memorization Sinks: Isolating Memorization during LLM Training"/>
   <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
   <meta property="og:url" content="URL OF THE WEBSITE"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image" content="static/image/sink.png" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
@@ -25,7 +25,7 @@
 
 
   <title>Memorization Sinks: Isolating Memorization during LLM Training </title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="static/images/sink.png">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
@@ -66,7 +66,6 @@
 
                   <div class="is-size-5 publication-authors">
                     <span class="author-block">Carnegie Mellon University<br>ICML 2025</span>
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
                   </div>
 
                   <div class="column has-text-centered">
@@ -157,56 +156,93 @@
     <div class="container">
       <h2 class="title">The Limitations of Post-Hoc Memorization Removal</h2>
       <div class="content has-text-justified">
-        <center>
         <p>
           Existing work on removing memorization hinges on the assumption that we can clearly delineate memorization from other LLM capabilities. Through a controlled study, we show that memorization is not always cleanly seperated from general language capabilities. This is particularly the case for memorized sequences resembling natural text (i.e. books, articles, etc). On the other hand, highly atypical memorized strings (i.e. random token sequences) can be naturally seperated. </p>
-        </center>
 
         </div>
         <center>
           <img src="static/images/IGInv.png" alt="Teaser Image" class="teaser-image" width  = "400px">
           <img src="static/images/HCInv.png" alt="Teaser Image" class="teaser-image" width  = "410px">
           </center>
-          <h2 class="subtitle has-text-centered">
-            We show that state-of-the-art techniques for removing memorization induce a <it>tradeoff</it> between getting rid of memorization and preserving the model's general capabilities. This tradeoff is particularly amplified when memorized sequences consist of repeated, natural text. 
-          </h2>
+          <p>
+            <center>
+              <b><i>Fig 2: Shortcomings of Post-Hoc Methods.</i></b> We show that state-of-the-art techniques for removing memorization induce a <it>tradeoff</it> between getting rid of memorization and preserving the model's general capabilities. This tradeoff is particularly amplified when memorized sequences consist of repeated, natural text. 
+            </center>
+          </p>
       </div>
     </div>
   </section>
 <!--End paper poster -->
 
-<section class="hero is-light">
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <h2 class="title">MemSinks: Isolating Memorization By Design</h2>
       <div class="content has-text-justified">
-        <center>
         <p>
           Given the shortcomings of removing memorization post-hoc, we next turn our attention to explicitly training models to enable the removal of memorization. We propose a new training paradigm, <strong>MemSinks</strong> to simultaneously achieve two goals:
+          <center>
           <div style="background-color: lightblue;margin: 0px;padding-top: 10px;padding-bottom: 10px;width: 60%">
-          <ul style="list-style-position: inside;text-align: left; list-style-type: square">
-            <li><strong>Isolate Memorization</strong>: Memorization should be stored in a known and removable set of neurons.</li>
-            <li><strong>Preserve Cross-Sequence Learning</strong>: The model should learn general capabilities from all data.</li>
+          
+          <ul style="list-style-position: inside;text-align: left; list-style-type: none">
+            <li>&#9989;  <strong>Isolate Memorization</strong>: Memorization should be stored in a known and removable set of neurons.</li>
+            <li>&#9989; <strong>Preserve Cross-Sequence Learning</strong>: The model should learn general capabilities from all data.</li>
           </ul> 
+          
           </div>
-          <p>
-          We achieve this by setting aside a set of <i>memorization sink neurons</i> in the transformer MLP layers. During training, a determinisstic subset of these sink neurons are activated on any sequence (using sequence-specific identifiers), alongside a set of <i>general neurons</i> that are activated on all sequences. Downstream, removing memorization sinks yields a model comparable in general capabilities, but without memorization!
+        </center>
+        </p>
+          We achieve this by setting aside a set of <i>memorization sink neurons</i> in the transformer MLP layers. During training, a determinisstic subset of these sink neurons are activated on any sequence (using sequence-specific identifiers), alongside a set of <i>general neurons</i> that are activated on all sequences. Downstream, removing memorization sinks yields a model comparable in general capabilities, but without memorization! Importantly, we see that MemSinks achieves a better tradeoff between <i> removing memorization</i> and preserving general language capabilities.
           </p>
           <center>
             <img src="static/images/MemSinksVal.png" alt="Teaser Image" class="teaser-image" width  = "400px">
-            <img src="static/images/MemSinksMem.png" alt="Teaser Image" class="teaser-image" width  = "410px">
+            <img src="static/images/MemSinksMem.png" alt="Teaser Image" class="teaser-image" width  = "400px">
+            <img src="static/images/SeqTiedTradeoffInv.png" alt="Teaser Image" class="teaser-image" width  = "410px">
             </center>
 
 
-        </center>
 
         </div>
+        <p>
+          <center>
+          <b><i>Fig 2: Performance of MemSinks.</i></b> (Left) MemSinks achieves comparable validation loss as standard training. (Center) MemSinks memorizes significantly less than standard training. (Right) MemSinks achieves a better tradeoff between removing memorization and preserving general capabilities than post-hoc methods.
+          </center>
+        </p>
       </div>
 
         </section>
         
     </div>
   </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title">Scaling MemSinks to 1B Parameter Model</h2>
+          <div class="content has-text-justified">
+            <p>
+            Based on our preliminary results, we deployed MemSinks when training 360M and 1.7 B parameter models on a mixture of Wikipedia and SlimPajama data. We consider a setting where we wish to upsample the relatively rare Wikipedia data (to improve validation loss on Wikipedia documents). Upsampling the training Wikipedia data leads to a model that memorizes less than standard training, but is still able to generalize to Wikipedia documents.  Upsampling the training Wikipedia documents results in memorization, as seen in the gap betwen validation and training loss in the training curves below. We see that MemSinks enables us to mitigate this memorization while still improving Wikipedia validation loss using the repeated documents (outperforming deduplicated standard training).          
+            </p>
+              </p>
+              <center>
+                <img src="static/images/MemSinks17B.png" alt="Teaser Image" class="teaser-image" width  = "400px">
+                <img src="static/images/MemSinks360.png" alt="Teaser Image" class="teaser-image" width  = "400px">
+                </center>
+    
+    
+    
+            </div>
+            <p>
+              <center>
+              <b><i>Fig 3: Scaling MemSinks to 1B Parameter Model.</i></b> Training loss curves for 1.7B (left) and 360M (right) parameter models trained on a mixture of Wikipedia and SlimPajama data.
+              </center>
+            </p>
+          </div>
+    
+            </section>
+            
+        </div>
+      </section>
 <!--End paper poster -->
 
 
@@ -221,7 +257,14 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>@inproceedings{
+        ghosal2025memorization,
+        title={Memorization Sinks: Isolating Memorization during {LLM} Training},
+        author={Gaurav Rohit Ghosal and Pratyush Maini and Aditi Raghunathan},
+        booktitle={Forty-second International Conference on Machine Learning},
+        year={2025},
+        url={https://openreview.net/forum?id=sRJrMPu5Uu}
+        }</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
