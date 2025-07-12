@@ -169,6 +169,10 @@
               <b><i>Fig 2: Shortcomings of Post-Hoc Methods.</i></b> We show that state-of-the-art techniques for removing memorization induce a <it>tradeoff</it> between getting rid of memorization and preserving the model's general capabilities. This tradeoff is particularly amplified when memorized sequences consist of repeated, natural text. 
             </center>
           </p>
+          <div style="background-color: rgba(255, 193, 8, 0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 4px solid black;border-radius: 15px;">
+            <p style="font-size: 20px; font-weight: bold;">&#128161; Theoretical Intuition</p>
+            <p>Why is memorized natural text challenging to remove post-hoc? In the paper, we theoretically analyze simplified linear neural network models and show that minimimum norm bias of gradient flow prefers solutions which reuse neurons for memorization and general language capabilites. </p>
+          </div>
       </div>
     </div>
   </section>
@@ -179,21 +183,67 @@
     <div class="container">
       <h2 class="title">MemSinks: Isolating Memorization By Design</h2>
       <div class="content has-text-justified">
-        <p>
+        <p >
           Given the shortcomings of removing memorization post-hoc, we next turn our attention to explicitly training models to enable the removal of memorization. We propose a new training paradigm, <strong>MemSinks</strong> to simultaneously achieve two goals:
-          <center>
-          <div style="background-color: lightblue;margin: 0px;padding-top: 10px;padding-bottom: 10px;width: 60%">
-          
-          <ul style="list-style-position: inside;text-align: left; list-style-type: none">
-            <li>&#9989;  <strong>Isolate Memorization</strong>: Memorization should be stored in a known and removable set of neurons.</li>
-            <li>&#9989; <strong>Preserve Cross-Sequence Learning</strong>: The model should learn general capabilities from all data.</li>
-          </ul> 
+          <div style="background-color: rgb(167, 224, 243, 0.5);margin: 0px;padding-top: 10px;padding-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;border: 4px solid black;border-radius: 15px;">
+          <p style="font-size: 20px; font-weight: bold;">🙏 Desiredata </p>
+          <p> &#9989;  <strong>Isolate Memorization</strong>: Memorization should be stored in a known and removable set of neurons.</p>
+          <p>&#9989; <strong>Preserve Cross-Sequence Learning</strong>: The model should learn general capabilities from all data.</p>
+
           
           </div>
-        </center>
+
         </p>
-          We achieve this by setting aside a set of <i>memorization sink neurons</i> in the transformer MLP layers. During training, a determinisstic subset of these sink neurons are activated on any sequence (using sequence-specific identifiers), alongside a set of <i>general neurons</i> that are activated on all sequences. Downstream, removing memorization sinks yields a model comparable in general capabilities, but without memorization! Importantly, we see that MemSinks achieves a better tradeoff between <i> removing memorization</i> and preserving general language capabilities.
+        <p>We achieve this by proposing a training method (described next) which isolates memorization to special ``sink” neurons that can be straightforwardly removed post-hoc.
           </p>
+          <h3 class="title">Implementing MemSinks</h3>
+
+          <h4 class="title">Annotate Pretraining Data</h4>
+          <center>
+          <img src="static/images/AnnotateDataWhite.png" alt="Teaser Image" class="teaser-image" width  = 800px">
+        </center>
+          <p>
+            The first step in implementing MemSinks is to annotate the training data with identifiers that reflect how we want sequences to be localized. Intuitively, tokens given the same identifier should be localized to the same sink neurons.  In our paper, we annotate use <it> document identifiers</it> to localize memorization arising from repetitions of the same document. This reflecs our focus in this work of eliminating verbatim memorization of pretraining data.</p>
+   
+        <div style="background-color: rgb(252, 165, 178,0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 4px solid black;border-radius: 15px;">
+          <p style="font-size: 20px; font-weight: bold;">&#128187; Implementation Details</p>
+          <p><strong>Generating Annotations</strong>There is considerable flexibility in how sequence ID annotations are provided, as long as similar sequences are assigned the same ID. In our work, we generate IDs during the tokenization process by computing the hash of the tokens in a document. This has minimal overhead over the standard tokenization process. </strong></p>
+        </div>
+        <div style="opacity: 1.0;background-color: rgba(191, 246, 191, 0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 4px solid black;border-radius: 15px;">
+          <p style="font-size: 20px; font-weight: bold;">&#9193; Future Work</p>
+          <p><strong>Alternative Annotation Approaches</strong> An interesting future direction is to explore alternative ways to annotate data. Leveraging information such as the document source, topic, or semantic clusters could potentially enable localization (and unlearning)
+          at coarser levels of granularity. </p>
+        </div>
+      
+        <h4 class="title">Designate MemSinks</h4>
+          <center>
+          <img src="static/images/DesignateMemorizationSinks.png" alt="Teaser Image" class="teaser-image" width  = "800px">
+        </center>
+        <p> Next, we need to designate the neurons that will store memorization (i.e. the sink neurons). In our work, we split the hidden MLP neurons at each transformer layer into two groups:<strong> sink neurons</strong> and <strong>general neurons</strong>. The ratio of sink neurons to general neurons is an important hyperparameter to tune (see paper for its effect). </p>
+        <h4 class="title">Selectively Activate Sinks during Training</h4>
+        <center>
+          <img src="static/images/SelectiveActivation.png" alt="Teaser Image" class="teaser-image" width  = "600px">
+        </center>
+        <p> During training, the general neurons are always active (as in standard training). However, <strong> only a subset of sink neurons </strong> are activated on any given training update. The subset of sink neurons activated is determined using the sequence identifier annotations. This ensures that repeated data updates a consistent set of sink neurons throughout training.</p>
+        <div style="background-color: rgb(252, 165, 178,0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 4px solid black;border-radius: 15px;">
+          <p style="font-size: 20px; font-weight: bold;">&#128187; Implementation Details</p>
+          <p><strong>Loading Sequence Annotations</strong> Large scale pretraining implementations typically treat the data as a single stream of tokens, from which fixed-size chunks are sampled (potentially crossing document boundaries). As a result, accessing additional sequence level informaton can be challenging. We store a sequence identifier for <it> each token</it> in the dataset and interleave sequence IDs into the token stream. This enables us to use existing streaming dataloaders to efficiently sample data, while sequence IDs can be easily extracted using simple indexing operations. Moreover, maintaining sequence ID for each token allows easy handling of data that crosses document boundaries. </p>
+          <p><strong>Efficiently Implementing Selective Activation of Sinks</strong> Selective activation can be implemented by simply multiplying the sink neuron activations by a binary mask (as in dropout). However, unlike stochastic dropout, the binary mask must be a deterministic function of the sequence identifier (while still balancing the number of documents for which a sink neuron is active). Moreover, as we maintain a sequence ID for each token, we must compute a seperate activation mask for each token in a batch. We developed a simple tensorized seeded random number generator to efficiently compute sink neuron activation masks during training. Our on-the-fly implementation prevents the need for pre-computing and storing masks corresponding for every pretraining sequence. </p>
+        </div>
+      </div>
+    </div>
+
+
+          
+
+   
+    </section>
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+
+
+
           <center>
             <img src="static/images/MemSinksVal.png" alt="Teaser Image" class="teaser-image" width  = "400px">
             <img src="static/images/MemSinksMem.png" alt="Teaser Image" class="teaser-image" width  = "400px">
@@ -202,15 +252,17 @@
 
 
 
-        </div>
+     
         <p>
           <center>
           <b><i>Fig 2: Performance of MemSinks.</i></b> (Left) MemSinks achieves comparable validation loss as standard training. (Center) MemSinks memorizes significantly less than standard training. (Right) MemSinks achieves a better tradeoff between removing memorization and preserving general capabilities than post-hoc methods.
           </center>
         </p>
       </div>
+      </div>
+      </section>
 
-        </section>
+        
         
     </div>
   </section>
