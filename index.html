@@ -126,7 +126,9 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="static/images/MemSinksFig.png" alt="Teaser Image" class="teaser-image">
+      <center>
+        <img src="static/images/MemSinksFig.png" alt="Teaser Image" style="width: 100%; max-width: 1000px; height: auto; display: block; margin: 10px auto;">
+      </center>
       <h2 class="subtitle has-text-centered">
       Standard training of LLMs can lead to memorization being arbitrarily distributed across the model. As a result, removing it is costly and often degrades general capabilites. Our training technique, <strong>MemSinks</strong>, maintains a set of <it> sink neurons</it> to implement memorization. These memorization sinks are <it> removable by design</it>, enabling straightforward downstream unlearning.
       </h2>
@@ -140,19 +142,13 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">TL;DR</h2>
         <div class="content has-text-justified">
-          <p>
-            Large language models are susceptible to memorizing repeated sequences, posing privacy and copyright concerns.
-             A popular mitigation strategy is to remove memorized information from specific neurons post-hoc. 
-             However, such approaches have shown limited success so far. 
-             In a controlled setting, we show that the memorization of <it>natural</it> sequences (those that resemble linguistically plausible text) become <it>mechanistically entangled</it> with general language abilities, thereby becoming challenging to remove post-hoc. 
-             In this work, we put forward a new paradigm of <strong>MemSinks</strong> that promotes isolation of memorization by design.
-              We leverage a sequence identifier to activate a unique set of memorization neurons for each sequence across repetitions. 
-              By analyzing the dynamics of learning and forgetting, we argue that <strong>MemSinks</strong> facilitates clean isolation of memorized content, making it easier to remove without compromising general language capabilities. 
-              We implement <strong>MemSinks</strong> at the billion-parameter and billion-token scale, and observe both effective isolation and strong generalization. 
-              To our knowledge, this is the first proof-of-concept on real data demonstrating that simultaneous generalization and isolation is achievable. 
-              We open-source our code at <a href="http://github.com/grghosal/MemSinks">http://github.com/grghosal/MemSinks</a>
+          <ul style="font-size: 1.2em; line-height: 1.6;">
+            <li><strong>🚫 The Problem:</strong> Current LLMs memorize repeated text, creating privacy/copyright issues. Post-hoc removal methods fail because memorization gets entangled with general language abilities.</li>
+            <li><strong>💡 The Solution:</strong> We introduce <strong>MemSinks</strong> - a training technique that isolates memorization into dedicated "sink neurons" that can be easily removed without affecting model performance.</li>
+            <li><strong>✅ The Results:</strong> First proof-of-concept showing simultaneous generalization and isolation is possible. Tested on billion-parameter models with real data - achieves both effective memorization removal and strong language capabilities.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -185,8 +181,8 @@
               <b><i>Fig 2: Shortcomings of Post-Hoc Methods.</i></b> We show that state-of-the-art techniques for removing memorization induce a <it>tradeoff</it> between getting rid of memorization and preserving the model's general capabilities. This tradeoff is particularly amplified when memorized sequences consist of repeated, natural text. 
             </center>
           </p>
-          <div style="background-color: rgba(255, 193, 8, 0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 4px solid black;border-radius: 15px;">
-            <p style="font-size: 20px; font-weight: bold;">&#128161; Theoretical Intuition</p>
+          <div style="background-color: rgba(225, 200, 245, 0.4);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
+            <p style="font-size: 20px; font-weight: bold;">🧠 Theoretical Intuition</p>
             <p>Why is memorized natural text challenging to remove post-hoc? In the paper, we theoretically analyze simplified linear neural network models and show that minimimum norm bias of gradient flow prefers solutions which reuse neurons for memorization and general language capabilities. </p>
           </div>
       </div>
@@ -201,10 +197,10 @@
       <div class="content has-text-justified">
         <p >
           Given the shortcomings of removing memorization post-hoc, we next turn our attention to explicitly training models to enable the removal of memorization. We propose a new training paradigm, <strong>MemSinks</strong> to simultaneously achieve two goals:
-          <div style="background-color: rgb(167, 224, 243, 0.5);margin: 0px;padding-top: 10px;padding-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;border: 4px solid black;border-radius: 15px;">
-          <p style="font-size: 20px; font-weight: bold;">🙏 Desiderata </p>
-          <p> ⬜  <strong>Isolate Memorization</strong>: Memorization should be stored in a known and removable set of neurons.</p>
-          <p> ⬜ <strong>Preserve General Capabilities</strong>: The model should learn general capabilities from all data.</p>
+          <div style="background-color: rgba(173, 216, 230, 0.5);margin: 0px;padding-top: 10px;padding-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;border: 2px solid black;border-radius: 6px;">
+          <p style="font-size: 20px; font-weight: bold;">Desiderata </p>
+          <p><strong>Isolate Memorization</strong>: Memorization should be stored in a known and removable set of neurons.</p>
+          <p><strong>Preserve General Capabilities</strong>: The model should learn general capabilities from all data.</p>
 
           
           </div>
@@ -216,16 +212,17 @@
 
           <h4 class="title">Annotate Pretraining Data</h4>
           <center>
-          <img src="static/images/AnnotateDataWhite.png" alt="Teaser Image" class="teaser-image" width  = 800px">
+          <img src="static/images/AnnotateDataWhite.png" alt="Teaser Image" class="imp-image">
         </center>
           <p>
             The first step in implementing MemSinks is to annotate the training data with identifiers that reflect how we want sequences to be localized. Intuitively, tokens given the same identifier should be localized to the same sink neurons.  In our paper, we annotate use <it> document identifiers</it> to localize memorization arising from repetitions of the same document. This reflecs our focus in this work of eliminating verbatim memorization of pretraining data.</p>
    
-        <div style="background-color: rgb(252, 165, 178,0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 4px solid black;border-radius: 15px;">
+        <div style="background-color: rgba(225, 200, 245, 0.4);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
           <p style="font-size: 20px; font-weight: bold;">&#128187; Implementation Details</p>
-          <p><strong>Generating Annotations:</strong> There is considerable flexibility in how sequence ID annotations are provided, as long as similar sequences are assigned the same ID. In our work, we generate IDs during the tokenization process by computing the hash of the tokens in a document. This has minimal overhead over the standard tokenization process. </strong></p>
+          <p><strong>Loading Sequence Annotations:</strong> We store sequence identifiers for each token and interleave them into the token stream, enabling efficient data loading while maintaining sequence-level information even when chunks cross document boundaries.</p>
+          <p><strong>Efficiently Implementing Selective Activation of Sinks:</strong> We implement selective activation using deterministic binary masks computed from sequence identifiers. Our tensorized seeded random number generator efficiently computes activation masks on-the-fly, avoiding the need to pre-compute and store masks for every sequence.</p>
         </div>
-        <div style="opacity: 1.0;background-color: rgba(191, 246, 191, 0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 4px solid black;border-radius: 15px;">
+        <div style="opacity: 1.0;background-color: rgba(173, 216, 230, 0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
           <p style="font-size: 20px; font-weight: bold;">&#9193; Future Work</p>
           <p><strong>Alternative Annotation Approaches:</strong> An interesting future direction is to explore alternative ways to annotate data. Leveraging information such as the document source, topic, or semantic clusters could potentially enable localization (and unlearning)
           at coarser levels of granularity. </p>
@@ -233,20 +230,26 @@
       
         <h4 class="title">Designate MemSinks</h4>
           <center>
-          <img src="static/images/DesignateMemorizationSinks.png" alt="Teaser Image" class="teaser-image" width  = "800px">
+          <img src="static/images/DesignateMemorizationSinks.png" alt="Teaser Image" class="imp-image">
         </center>
         <p> Next, we need to designate the neurons that will store memorization (i.e. the sink neurons). In our work, we split the hidden MLP neurons at each transformer layer into two groups:<strong> sink neurons</strong> and <strong>general neurons</strong>. The ratio of sink neurons to general neurons is an important hyperparameter to tune (see paper for its effect). </p>
         <h4 class="title">Selectively Activate Sinks during Training</h4>
         <center>
-          <img src="static/images/SelectiveActivation.png" alt="Teaser Image" class="teaser-image" width  = "600px">
+          <img src="static/images/SelectiveActivation.png" alt="Teaser Image" class="imp-image">
         </center>
         <p> During training, the general neurons are always active (as in standard training). However, <strong> only a subset of sink neurons </strong> are activated on any given training update. The subset of sink neurons activated is determined using the sequence identifier annotations. This ensures that repeated data updates a consistent set of sink neurons throughout training.</p>
-        <div style="background-color: rgb(252, 165, 178,0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 4px solid black;border-radius: 15px;">
+        <div style="background-color: rgba(225, 200, 245, 0.4);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
           <p style="font-size: 20px; font-weight: bold;">&#128187; Implementation Details</p>
-          <p><strong>Loading Sequence Annotations:</strong> Large scale pretraining implementations typically treat the data as a single stream of tokens, from which fixed-size chunks are sampled (potentially crossing document boundaries). As a result, accessing additional sequence level informaton can be challenging. We store a sequence identifier for <it> each token</it> in the dataset and interleave sequence IDs into the token stream. This enables us to use existing streaming dataloaders to efficiently sample data, while sequence IDs can be easily extracted using simple indexing operations. Moreover, maintaining sequence ID for each token allows easy handling of data that crosses document boundaries. </p>
-          <p><strong>Efficiently Implementing Selective Activation of Sinks:</strong> Selective activation can be implemented by simply multiplying the sink neuron activations by a binary mask (as in dropout). However, unlike stochastic dropout, the binary mask must be a deterministic function of the sequence identifier (while still balancing the number of documents for which a sink neuron is active). Moreover, as we maintain a sequence ID for each token, we must compute a seperate activation mask for each token in a batch. We developed a simple tensorized seeded random number generator to efficiently compute sink neuron activation masks during training. Our on-the-fly implementation prevents the need for pre-computing and storing masks corresponding for every pretraining sequence. </p>
-        </div>
+          <p><strong>Loading Sequence Annotations:</strong> We store sequence identifiers for each token and interleave them into the token stream, enabling efficient data loading while maintaining sequence-level information even when chunks cross document boundaries. </p>
+          <p><strong>Efficiently Implementing Selective Activation of Sinks:</strong> We implement selective activation using deterministic binary masks computed from sequence identifiers. Our tensorized seeded random number generator efficiently computes activation masks on-the-fly, avoiding the need to pre-compute and store masks for every sequence. </p>
+        </div>      
+      <h4 class="title">Throw Away Sinks</h4>
+      <p> Given a model trained with MemSinks, we can remove memorized sequences by simply dropping out the sink neurons. This is particularly straightforward relative to post-hoc methods which require further finetuning or localization!</p>
+      <div style="background-color: rgba(173, 216, 230, 0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
+        <p style="font-size: 20px; font-weight: bold;">&#9193; Future Work</p>
+        <p><strong>Targeted Unlearning</strong> In this work, we focused primarily on removing memorization entirely from the model. As such, we primarily test the case of removing all sink neurons. However, an important direction for future work is to enable targeted removal of specific memorized sequences, while preserving others.</p>
       </div>
+    </div>
     </div>   
     </section>
     <section class="hero is-small">
@@ -259,7 +262,7 @@
             <p style="margin-bottom: 15px;">We first validated MemSinks on a small-scale setting based off of the TinyStories dataset, with a subset of 1000 stories repeated 1000 times.
                We compared standard trained models with MemSinks (where sinks were dropped out). Our in Figure 2 results provide compelling that MemSinks satisfies our two desiderata:
               </p>
-               <div style="background-color: rgb(167, 224, 243, 0.5);margin: 0px;padding-top: 10px;padding-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;border: 4px solid black;border-radius: 15px;margin-bottom: 20px;">
+               <div style="background-color: rgba(225, 200, 245, 0.4);margin: 0px;padding-top: 10px;padding-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;border: 2px solid black;border-radius: 6px;;margin-bottom: 20px;">
                 <p style="font-size: 20px; font-weight: bold;">&#127942; Desiderata </p>
                 <p> ✅  <strong>Isolate Memorization:</strong> In the middle panel of Figure 2, we see that the MemSinks model has significantly higher loss on the repeated stories than standard training.</p>
                 <p> ✅ <strong>Preserve General Capabilities:</strong> We see that MemSinks achieves comparable validation loss as standard training in the left panel of Figure 2. Moreover, the right panel of Figure 2 shows that MemSinks achieves a better tradeoff between removing memorization and preserving general capabilities than post-hoc methods.</p>

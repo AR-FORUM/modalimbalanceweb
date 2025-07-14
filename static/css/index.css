@@ -133,5 +133,95 @@ body {
   font-size: smaller;
 }
 
+/* Decrease the width of the website */
+.container {
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.container.is-max-desktop {
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Ensure hero sections also respect the narrower width */
+.hero .container {
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Adjust section containers as well */
+.section .container {
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Make images responsive and fit within the narrower container */
+img {
+  max-width: 45% !important;
+  height: auto !important;
+  display: inline-block !important;
+  margin: 5px !important;
+}
+
+.teaser-image {
+  max-width: 45% !important;
+  height: auto !important;
+  display: inline-block !important;
+  margin: 5px !important;
+}
+.imp-image {
+  width: 1200px !important;
+  max-width: none !important;
+  height: auto !important;
+  display: block !important;
+  margin: 10px auto !important;
+}
+
+/* More specific rules to override any conflicts */
+img.imp-image {
+  width: 1200px !important;
+  max-width: none !important;
+  height: auto !important;
+  display: block !important;
+  margin: 10px auto !important;
+}
+
+center img.imp-image {
+  width: 600px !important;
+  max-width: none !important;
+  height: auto !important;
+  display: block !important;
+  margin: 10px auto !important;
+}
+/* Ensure images in content areas don't overflow */
+.content img {
+  max-width: 45% !important;
+  height: auto !important;
+  display: inline-block !important;
+  margin: 5px !important;
+}
+
+/* Make sure center-aligned images respect container width */
+center img {
+  max-width: 45% !important;
+  height: auto !important;
+  display: inline-block !important;
+  margin: 5px !important;
+}
+
+/* Specific rule for the first figure to override conflicts */
+.hero.teaser center img {
+  max-width: 1000px !important;
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 10px auto !important;
+}
+
 
 
