@@ -148,14 +148,14 @@ body {
 
 /* Ensure hero sections also respect the narrower width */
 .hero .container {
-  max-width: 700px !important;
+  max-width: 800px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
 /* Adjust section containers as well */
 .section .container {
-  max-width: 700px !important;
+  max-width: 800px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -174,8 +174,9 @@ img {
   display: inline-block !important;
   margin: 5px !important;
 }
+
 .imp-image {
-  width: 1200px !important;
+  width: 600px !important;
   max-width: none !important;
   height: auto !important;
   display: block !important;
@@ -184,13 +185,14 @@ img {
 
 /* More specific rules to override any conflicts */
 img.imp-image {
-  width: 1200px !important;
+  width: 600px !important;
   max-width: none !important;
   height: auto !important;
   display: block !important;
   margin: 10px auto !important;
 }
 
+/* Override center img rules for imp-image */
 center img.imp-image {
   width: 600px !important;
   max-width: none !important;
@@ -198,6 +200,18 @@ center img.imp-image {
   display: block !important;
   margin: 10px auto !important;
 }
+
+/* Most specific rule to override all conflicts for imp-image */
+.hero .container center img.imp-image,
+.section .container center img.imp-image,
+.container center img.imp-image {
+  width: 600px !important;
+  max-width: none !important;
+  height: auto !important;
+  display: block !important;
+  margin: 10px auto !important;
+}
+
 /* Ensure images in content areas don't overflow */
 .content img {
   max-width: 45% !important;
