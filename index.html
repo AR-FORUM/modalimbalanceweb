@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/index.css?v=2">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -212,7 +212,7 @@
 
           <h4 class="title">Annotate Pretraining Data</h4>
           <center>
-          <img src="static/images/AnnotateDataWhite.png" alt="Teaser Image" class="imp-image">
+          <img src="static/images/AnnotateDataWhite.png" alt="Teaser Image" class="imp-image" style="width: 600px !important; max-width: none !important; height: auto !important; display: block !important; margin: 10px auto !important;">
         </center>
           <p>
             The first step in implementing MemSinks is to annotate the training data with identifiers that reflect how we want sequences to be localized. Intuitively, tokens given the same identifier should be localized to the same sink neurons.  In our paper, we annotate use <it> document identifiers</it> to localize memorization arising from repetitions of the same document. This reflecs our focus in this work of eliminating verbatim memorization of pretraining data.</p>
@@ -230,12 +230,12 @@
       
         <h4 class="title">Designate MemSinks</h4>
           <center>
-          <img src="static/images/DesignateMemorizationSinks.png" alt="Teaser Image" class="imp-image">
+          <img src="static/images/DesignateMemorizationSinks.png" alt="Teaser Image" class="imp-image" style="width: 600px !important; max-width: none !important; height: auto !important; display: block !important; margin: 10px auto !important;">
         </center>
         <p> Next, we need to designate the neurons that will store memorization (i.e. the sink neurons). In our work, we split the hidden MLP neurons at each transformer layer into two groups:<strong> sink neurons</strong> and <strong>general neurons</strong>. The ratio of sink neurons to general neurons is an important hyperparameter to tune (see paper for its effect). </p>
         <h4 class="title">Selectively Activate Sinks during Training</h4>
         <center>
-          <img src="static/images/SelectiveActivation.png" alt="Teaser Image" class="imp-image">
+          <img src="static/images/SelectiveActivation.png" alt="Teaser Image" class="imp-image" style="width: 600px !important; max-width: none !important; height: auto !important; display: block !important; margin: 10px auto !important;">
         </center>
         <p> During training, the general neurons are always active (as in standard training). However, <strong> only a subset of sink neurons </strong> are activated on any given training update. The subset of sink neurons activated is determined using the sequence identifier annotations. This ensures that repeated data updates a consistent set of sink neurons throughout training.</p>
         <div style="background-color: rgba(225, 200, 245, 0.4);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
