@@ -135,27 +135,27 @@ body {
 
 /* Decrease the width of the website */
 .container {
-  max-width: 800px !important;
+  max-width: 700px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
 .container.is-max-desktop {
-  max-width: 800px !important;
+  max-width: 700px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
 /* Ensure hero sections also respect the narrower width */
 .hero .container {
-  max-width: 800px !important;
+  max-width: 700px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
 /* Adjust section containers as well */
 .section .container {
-  max-width: 800px !important;
+  max-width: 700px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
