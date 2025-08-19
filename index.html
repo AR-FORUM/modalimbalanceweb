@@ -233,7 +233,8 @@
         <center>
           <img src="static/images/SelectiveActivation.png" alt="Teaser Image" class="imp-image" style="width: 600px !important; max-width: none !important; height: auto !important; display: block !important; margin: 10px auto !important;">
         </center>
-        <p> During training, <strong> only a subset of sink neurons </strong> are activated on any given training update. The subset of sink neurons activated is determined using the sequence identifier annotations. This ensures that repeated data updates a consistent set of sink neurons throughout training.</p>
+        <p> During training, <strong> only a subset of sink neurons </strong> are activated on any given training update. The subset of sink neurons activated is determined using the sequence identifier annotations. This ensures that repeated data updates a consistent set of sink neurons throughout training. </p>
+        <p>Our masking of sink neurons is inspired by dimensionality reduction. Ideally, each sequence would have a dedicated set of neurons to store its memorization. However, this would require the number of neurons to grow with the total number of training sequences! Our neuron masking scheme can be viewed as a low-dimensional projection of this ideal case and we empirically find this is sufficient to encourage localization! </p>
         <div style="background-color: rgba(225, 200, 245, 0.4);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
           <p style="font-size: 20px; font-weight: bold;">&#128187; Implementation Details</p>
           <p><strong>Loading Sequence Annotations:</strong> We store sequence identifiers for each token and interleave them into the token stream, enabling efficient data loading while maintaining sequence-level information even when chunks cross document boundaries. </p>
@@ -247,6 +248,8 @@
         <p style="font-size: 20px; font-weight: bold;">&#9193; Future Work</p>
         <p><strong>Targeted Unlearning</strong> In this work, we focused primarily on removing memorization entirely from the model. As such, we primarily test the case of removing all sink neurons. However, an important direction for future work is to enable targeted removal of specific memorized sequences, while preserving others.</p>
       </div>
+      <p>MemSinks are similar to Mixture of Experts models (MOE), which also selectively activate model components. In MOEs, however, the activation of experts is performed by a <strong>learned router</strong>, which empirically struggles to enforce localization (i.e. <a href="https://arxiv.org/abs/2202.08906">[1]</a> ,<a href="https://arxiv.org/abs/2401.06066">[2]</a>). The learned router means that MOEs provide no explicit control over how memorization is stored.</p>
+      <p>In MemSinks, we get rid of the learned router and directly enforce a pre-specified localizaiton scheme (using the sequence annotations). This allows the model designer direct control over how memorization is stored, enabling removal by design.</p>
     </div>
     </div>   
     </section>
