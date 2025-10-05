@@ -4,28 +4,28 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="Large language models are susceptible to memorizing repeated sequences, posing privacy and copyright concerns. A popular mitigation strategy is to remove memorized information from specific neurons post-hoc. However, such approaches have shown limited success so far. In a controlled setting, we show that the memorization of \emph{natural} sequences (those that resemble linguistically plausible text) become \emph{mechanistically entangled} with general language abilities, thereby becoming challenging to remove post-hoc. In this work, we put forward a new paradigm of \seqtd that promotes isolation of memorization by design. We leverage a sequence identifier to activate a unique set of memorization neurons for each sequence across repetitions. By analyzing the dynamics of learning and forgetting, we argue that \seqtd facilitates clean isolation of memorized content, making it easier to remove without compromising general language capabilities. We implement \seqtd at the billion-parameter and billion-token scale, and observe both effective isolation and strong generalization. To our knowledge, this is the first proof-of-concept on real data demonstrating that simultaneous generalization and isolation is achievable. We open-source our code at http://github.com/grghosal/MemSinks">
-  <meta property="og:title" content="Memorization Sinks: Isolating Memorization during LLM Training"/>
+  <meta name="description" content="Foundation models must reason jointly over multiple modalities, but how well do they handle cross-modal contexts? We reveal that FMs recognize conflicts in unimodal contexts 90% of the time, but only 3% when evidence is split across modalities. We trace this failure to cross-modal attention imbalance and show that instance-level modality mixing—explicitly combining multiple modalities within each training instance—significantly improves cross-modal reasoning without requiring additional data curation.">
+  <meta property="og:title" content="Mitigating Modal Imbalance in Multimodal Reasoning"/>
   <meta property="og:description" content=""/>
-  <meta property="og:url" content="https://grghosal.github.io/memsinksweb/"/>
+  <meta property="og:url" content="https://ar-forum.github.io/modal-imbalance/"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/sink.png" />
+  <meta property="og:image" content="static/images/motivating_example.png" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
 
-  <meta name="twitter:title" content="Memorization Sinks: Isolating Memorization during LLM Training">
-  <meta name="twitter:description" content="We present a new paradigm to isolate memorization by design during LLM training.">
+  <meta name="twitter:title" content="Mitigating Modal Imbalance in Multimodal Reasoning">
+  <meta name="twitter:description" content="We uncover cross-modal attention imbalance in foundation models and propose instance-level modality mixing to improve cross-modal reasoning.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/image/sink.png">
+  <meta name="twitter:image" content="static/images/motivating_example.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="Unlearning, Memorization, Pretraining, LLM">
+  <meta name="keywords" content="Multimodal Learning, Cross-Modal Reasoning, Attention Imbalance, Foundation Models, Vision-Language Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Memorization Sinks: Isolating Memorization during LLM Training </title>
-  <link rel="icon" type="image/x-icon" href="static/images/sink.png">
+  <title>Mitigating Modal Imbalance in Multimodal Reasoning</title>
+  <link rel="icon" type="image/x-icon" href="static/images/scale.png">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
@@ -52,27 +52,27 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Memorization Sinks: Isolating Memorization during LLM Training            </h1>
+            <h1 class="title is-1 publication-title">Mitigating Modal Imbalance in Multimodal Reasoning</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="https://grghosal.github.io/" target="_blank">Gaurav R. Ghosal</a>, 
+                <a href="https://chenwu.io" target="_blank">Chen Henry Wu</a>*, 
                 <span class="author-block">
-                  <a href="https://pratyushmaini.github.io/" target="_blank">Pratyush Maini</a>, 
+                  <a href="https://neilkale.github.io" target="_blank">Neil Kale</a>*, 
                   <span class="author-block">
                     <a href="https://www.cs.cmu.edu/~aditirag/" target="_blank">Aditi Raghunathan</a>
                   </span>
                   </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">Carnegie Mellon University<br>ICML 2025</span>
+                    <span class="author-block">Carnegie Mellon University<br>COLM 2025</span>
                   </div>
 
                   <div class="column has-text-centered">
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
                       <span class="link-block">
-                        <a href="https://arxiv.org/pdf/2507.09937" target="_blank"
+                        <a href="https://openreview.net/pdf?id=JsaXxGOXfU" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -84,7 +84,7 @@
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/grghosal/MemSinks" target="_blank"
+                    <a href="https://github.com/AR-FORUM/modal-imbalance" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -95,12 +95,12 @@
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2507.09937" target="_blank"
+                  <a href="#" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv</span>
+                  <span>arXiv (Coming Soon)</span>
                 </a>
               </span>
             </div>
@@ -117,10 +117,10 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <center>
-        <img src="static/images/MemSinksFig.png" alt="Teaser Image" style="width: 100%; max-width: 1000px; height: auto; display: block; margin: 10px auto;">
+        <img src="static/images/motivating_example.png" alt="Teaser Image" style="width: 100%; max-width: 1000px; height: auto; display: block; margin: 10px auto;">
       </center>
       <h2 class="subtitle has-text-centered">
-      Standard training of LLMs can lead to memorization being arbitrarily distributed across the model. As a result, removing it is costly and often degrades general capabilites. Our training technique, <strong>MemSinks</strong>, maintains a set of <it> sink neurons</it> to implement memorization. These memorization sinks are <it> removable by design</it>, enabling straightforward downstream unlearning.
+      Foundation models deployed in real-world tasks must integrate diverse modalities—from multilingual news to shopping websites and medical records. However, we find that FMs recognize conflicts in <strong>unimodal contexts</strong> 90% of the time, but this drops to as low as <strong>3%</strong> when evidence is split across modalities. We trace this failure to <strong>cross-modal attention imbalance</strong> and show that <strong>instance-level modality mixing</strong> significantly improves cross-modal reasoning.
       </h2>
     </div>
   </div>
@@ -135,9 +135,9 @@
         <h2 class="title is-3">TL;DR</h2>
         <div class="content has-text-justified">
           <ul style="font-size: 1.2em; line-height: 1.6;">
-            <li><strong>🚫 The Problem:</strong> Current LLMs memorize repeated text, creating privacy/copyright issues. Post-hoc removal methods fail because memorization gets entangled with general language abilities.</li>
-            <li><strong>💡 The Solution:</strong> We introduce <strong>MemSinks</strong> - a training technique that isolates memorization into dedicated "sink neurons" that can be easily removed without affecting model performance.</li>
-            <li><strong>✅ The Results:</strong> First proof-of-concept showing simultaneous generalization and isolation is possible. Tested on billion-parameter models with real data - achieves both effective memorization removal and strong language capabilities.</li>
+            <li><strong>🚫 The Problem:</strong> Foundation models fail at cross-modal reasoning - detecting conflicts in unimodal contexts (text-text, image-image) 90% of the time but only 3% in cross-modal contexts (text-image). This extends to multilingual settings too.</li>
+            <li><strong>🔍 The Cause:</strong> We identify <strong>cross-modal attention imbalance</strong> - FMs disproportionately prioritize certain modalities. Manual attention reweighting confirms this has a causal effect on reasoning performance.</li>
+            <li><strong>✅ The Solution:</strong> <strong>Instance-level modality mixing</strong> - explicitly combining multiple modalities within each training instance. This simple, scalable approach reduces attention imbalance by 4× and improves conflict detection by up to 37% without requiring additional data curation.</li>
           </ul>
         </div>
       </div>
@@ -149,37 +149,37 @@
 <section class="hero is-small is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title">The Limitations of Post-Hoc Memorization Removal</h2>
+      <h2 class="title">Cross-Modal Reasoning: A Critical Gap</h2>
       <div class="content has-text-justified">
         <p>
-          <strong>Current approaches</strong> for removing memorization rely on post-hoc weight updates (unlearning), assuming memorization is separate from general capabilities. We test this in two settings:
+          <strong>How good are foundation models at joint reasoning?</strong> Real-world tasks require FMs to simultaneously reason over multiple modalities. To test this, we create <strong>cross-modal conflict datasets</strong> where each modality provides contrasting evidence. This allows us to examine whether FMs prioritize one modality over another or reason jointly to reconcile the conflict.
         </p>
         <ul style="margin-left: 20px;">
-          <li><i>Natural sequences:</i> Linguistically plausible text that pose copyright/privacy concerns</li>
-          <li><i>Canaries:</i> Random/atypical sequences used in controlled studies</li>
+          <li><strong>Cross-Modal QA (CMQA):</strong> Text vs. Image conflicts based on VQA-v2 dataset</li>
+          <li><strong>Cross-Lingual QA (CLQA):</strong> English vs. Chinese (and other languages) conflicts</li>
         </ul>
         <p>
-          <strong>Key Finding:</strong> removing natural memorized sequences (passages from books, articles, etc) can significantly compromise general capabilities.
+          <strong>Key Finding:</strong> FMs detect conflicts in unimodal contexts (Text-Text, Image-Image) far better than cross-modal contexts (Text-Image). The same pattern holds for multilingual settings.
         </p>
 
           <center>
-          <img src="static/images/IGInv.png" alt="Teaser Image" class="teaser-image" width  = "400px">
-          <img src="static/images/HCInv.png" alt="Teaser Image" class="teaser-image" width  = "410px">
+          <img src="static/images/hetero_multilingual.png" alt="Multilingual Results" class="teaser-image" width="600px">
+          <img src="static/images/hetero_multimodal.png" alt="Multimodal Results" class="teaser-image" width="230px">
           </center>
           <p>
             <center>
-              <b><i>Fig 2: Shortcomings of Post-Hoc Methods.</i></b> We show that state-of-the-art techniques for removing memorization induce a <it>tradeoff</it> between getting rid of memorization and preserving the model's general capabilities. This tradeoff is particularly amplified when memorized sequences consist of repeated, natural text. 
+              <b><i>Fig 2: Cross-Modal Reasoning Failure.</i></b> FMs are significantly worse at reasoning over cross-modal contexts than unimodal contexts. Left: Multilingual setting shows English-English and Chinese-Chinese perform 5× better than English-Chinese. Right: Multimodal setting shows Text-Text and Image-Image far outperform Text-Image.
             </center>
           </p>
 
           <div style="text-align: center; margin: 30px 0; padding: 20px; background-color: #f5f5f5; border-left: 5px solid #3273dc;">
             <p style="font-size: 24px; font-weight: bold; color: #3273dc; margin: 0;">
-              🚨 Standard training may not yield easy to unlearn models
+              🚨 State-of-the-art FMs fail at simple cross-modal reasoning tasks
             </p>
           </div>
           <div style="background-color: rgba(225, 200, 245, 0.4);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
-            <p style="font-size: 20px; font-weight: bold;">🧠 Theoretical Intuition</p>
-            <p>Why is memorized natural text challenging to remove post-hoc? In the paper, we theoretically analyze simplified linear neural network models and show that minimimum norm bias of gradient flow prefers solutions which reuse neurons for memorization and general language capabilities. </p>
+            <p style="font-size: 20px; font-weight: bold;">💡 Key Insight</p>
+            <p>This performance drop is NOT due to weakness in one modality—VLMs detect Image-Image conflicts as easily as Text-Text conflicts. The problem arises specifically when reasoning across modalities within the same context.</p>
           </div>
       </div>
     </div>
@@ -189,67 +189,51 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title">MemSinks: Isolating Memorization By Design</h2>
+      <h2 class="title">Cross-Modal Attention Imbalance: The Root Cause</h2>
       <div class="content has-text-justified">
-        <p >
-          Given the shortcomings of removing memorization post-hoc, we propose a new training paradigm, <strong>MemSinks</strong> to simultaneously achieve two goals:
-          <div style="background-color: rgba(173, 216, 230, 0.5);margin: 0px;padding-top: 10px;padding-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;border: 2px solid black;border-radius: 6px;">
-          <p style="font-size: 20px; font-weight: bold;">Desiderata </p>
-          <p><strong>Isolate Memorization</strong>: Memorization should be stored in a known and removable set of neurons.</p>
-          <p><strong>Preserve General Capabilities</strong>: The model should learn general capabilities from all data.</p>
-
-          
-          </div>
-
+        <p>
+          <strong>Why do FMs fail at cross-modal reasoning?</strong> We hypothesize that context contribution in task-relevant subspaces is imbalanced in cross-modal contexts, making FMs more likely to rely on the dominant modality instead of doing conflict detection.
         </p>
-        <p>We achieve this by proposing a training method (described next) which isolates memorization to special ``sink” neurons that can be straightforwardly removed post-hoc.
-          </p>
-          <h3 class="title">Implementing MemSinks</h3>
+          <h3 class="title">Visualizing Attention Imbalance</h3>
 
-          <h4 class="title"> &#9997; Annotate Pretraining Data</h4>
           <center>
-          <img src="static/images/AnnotateDataWhite.png" alt="Teaser Image" class="imp-image" style="width: 600px !important; max-width: none !important; height: auto !important; display: block !important; margin: 10px auto !important;">
+          <img src="static/images/mental-1.png" alt="Attention Imbalance Visualization" class="imp-image" style="width: 800px !important; max-width: none !important; height: auto !important; display: block !important; margin: 10px auto !important;">
         </center>
           <p>
-            To deploy MemSinks, we first annotate the training data to specify how sequences should be localized. In our work, we primarily examine the memorization of repeated documents and thus give each pretraining document an ID. </p>
+            We compute the average norm of context contributions (u_k) for each modality, averaged over all layers and attention heads. The figure shows that:</p>
+            <ul style="margin-left: 20px;">
+              <li><strong>Cross-lingual:</strong> English context contributes more than Chinese context</li>
+              <li><strong>Cross-modal:</strong> Text contributes more than images</li>
+            </ul>
    
         <div style="background-color: rgba(225, 200, 245, 0.4);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
-          <p style="font-size: 20px; font-weight: bold;">&#128187; Implementation Details</p>
-          <p><strong>Generating Sequence Annotations:</strong> We can efficiently generate sequence annotations by simply hashing the tokens in each document.</p>
-        </div>
-        <div style="opacity: 1.0;background-color: rgba(173, 216, 230, 0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
-          <p style="font-size: 20px; font-weight: bold;">&#9193; Future Work</p>
-          <p><strong>Alternative Annotation Approaches:</strong> An interesting future direction is to explore alternative ways to annotate data. Leveraging information such as the document source, topic, or semantic clusters could potentially enable localization (and unlearning)
-          at coarser levels of granularity. </p>
+          <p style="font-size: 20px; font-weight: bold;">🧠 Mental Model</p>
+          <p>In unimodal contexts, different domains show balanced normalized attention despite divergent pre-softmax logits. Cross-modal contexts expose attention imbalance—normalization fails to mitigate logit-level imbalance.</p>
         </div>
         <div style="margin-top: 30px;"></div>
       
-        <h4 class="title">🫵 Designate MemSinks</h4>
+        <h3 class="title">🔬 Causal Intervention: Attention Manipulation</h3>
+          <p>To test if there's a <strong>causal</strong> relationship between attention imbalance and cross-modal reasoning, we manipulate attention weights by adding a small constant ε to the unnormalized attention score of the underrepresented modality.</p>
           <center>
-          <img src="static/images/DesignateMemorizationSinks.png" alt="Teaser Image" class="imp-image" style="width: 600px !important; max-width: none !important; height: auto !important; display: block !important; margin: 10px auto !important;">
+          <img src="static/images/manipulate_multilingual.png" alt="Manipulation Results Multilingual" class="teaser-image" width="150px">
+          <img src="static/images/manipulate_monolingual.png" alt="Manipulation Results Monolingual" class="teaser-image" width="150px">
+          <img src="static/images/manipulate_multimodal.png" alt="Manipulation Results Multimodal" class="teaser-image" width="90px">
         </center>
-        <p> We split the hidden MLP neurons at each transformer layer into two groups:<strong> sink neurons</strong> and <strong>general neurons</strong>. Sink neurons specialize to memorization, while general neurons aggregagte capabilities across the corpus. </p>
-        <h4 class="title">⏻ Selectively Activate Sinks during Training</h4>
-        <center>
-          <img src="static/images/SelectiveActivation.png" alt="Teaser Image" class="imp-image" style="width: 600px !important; max-width: none !important; height: auto !important; display: block !important; margin: 10px auto !important;">
-        </center>
-        <p> During training, <strong> only a subset of sink neurons </strong> are activated on any given training update. The subset of sink neurons activated is determined using the sequence identifier annotations. This ensures that repeated data updates a consistent set of sink neurons throughout training. </p>
-        <p>Our masking of sink neurons is inspired by dimensionality reduction. Ideally, each sequence would have a dedicated set of neurons to store its memorization. However, this would require the number of neurons to grow with the total number of training sequences! Our neuron masking scheme can be viewed as a low-dimensional projection of this ideal case and we empirically find this is sufficient to encourage localization! </p>
-        <div style="background-color: rgba(225, 200, 245, 0.4);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
-          <p style="font-size: 20px; font-weight: bold;">&#128187; Implementation Details</p>
-          <p><strong>Loading Sequence Annotations:</strong> We store sequence identifiers for each token and interleave them into the token stream, enabling efficient data loading while maintaining sequence-level information even when chunks cross document boundaries. </p>
-          <p><strong>Efficiently Implementing Selective Activation of Sinks:</strong> We implement selective activation using deterministic binary masks computed from sequence identifiers. Our tensorized seeded random number generator efficiently computes activation masks on-the-fly, avoiding the need to pre-compute and store masks for every sequence. </p>
-        </div>      
-      <div style="margin-top: 30px;"></div>
-      <h4 class="title">🗑️ Throw Away Sinks</h4>
-      <p> Given a model trained with MemSinks, we can remove memorized sequences by simply dropping out the sink neurons. No finetuning needed!</p>
+        <p>
+          <center>
+          <b><i>Fig 3: Causal Effect of Attention Imbalance.</i></b> Applying a fixed attention bias to increase attention over the underrepresented modality improves conflict detection performance dramatically—up to 43% absolute improvement in cross-lingual settings and 18% in cross-modal settings.
+          </center>
+        </p>
 
       <div style="background-color: rgba(173, 216, 230, 0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
-        <p style="font-size: 20px; font-weight: bold;">&#9193; Future Work</p>
-        <p><strong>Targeted Unlearning</strong> In this work, we focused primarily on removing memorization entirely from the model. As such, we primarily test the case of removing all sink neurons. However, an important direction for future work is to enable targeted removal of specific memorized sequences, while preserving others.</p>
+        <p style="font-size: 20px; font-weight: bold;">✅ Validation on Real Benchmarks</p>
+        <p>We verify our findings on challenging vision-language benchmarks (BLINK, SAT). Attention manipulation achieves up to 2% absolute accuracy gains on datasets requiring substantive visual reasoning, confirming that reducing attention imbalance improves real-world performance.</p>
       </div>
-      <p>MemSinks are similar to Mixture of Experts models (MOE), which also selectively activate model components. In MOEs, however, the activation of experts is performed by a <strong>learned router</strong>, which empirically struggles to enforce localization (i.e. <a href="https://arxiv.org/abs/2202.08906">[1]</a> ,<a href="https://arxiv.org/abs/2401.06066">[2]</a>). The learned router means that MOEs provide no explicit control over how memorization is stored.</p>
-      <p>In MemSinks, we get rid of the learned router and directly enforce a pre-specified localizaiton scheme (using the sequence annotations). This allows the model designer direct control over how memorization is stored, enabling removal by design.</p>
+      <div style="text-align: center; margin: 30px 0; padding: 20px; background-color: #f5f5f5; border-left: 5px solid #3273dc;">
+        <p style="font-size: 24px; font-weight: bold; color: #3273dc; margin: 0;">
+          💡 Cross-modal attention imbalance has a causal negative effect on cross-modal reasoning
+        </p>
+      </div>
     </div>
     </div>   
     </section>
@@ -258,29 +242,53 @@
       <div class="hero-body">
         
         <div class="container">
-          <h3 class="title">Small Scale Validation of MemSinks</h3>
+          <h2 class="title">The Solution: Instance-Level Modality Mixing</h2>
           <div class="content has-text-justified">
-            <h4 class="title">🔬 Experimental Setup</h4>
-            <ul style="margin-left: 20px; margin-bottom: 15px;">
-              <li>📚<strong>Data:</strong> We validated MemSinks on a small-scale setting using a small scale TinyStories dataset, where some stories were heavily repeated.</li>
-              <li>⚖️ <strong>Comparison Method:</strong> We compared standard trained models with MemSinks (where sinks were dropped out)</li>
-            </ul>
-            <p></p> Our findings in Figure 2 provide compelling evidence that MemSinks satisfies our two desiderata:</p>
+            <p><strong>Why doesn't simply training on diverse data help?</strong> Most state-of-the-art FMs today are trained on highly diverse corpora spanning multiple languages and modalities. However, this <strong>dataset-level modality mixing</strong> offers minimal gains in alleviating cross-modal attention imbalance.</p>
+            
+            <p>The problem: mixing datasets does not expose models to instances requiring cross-modal reasoning <strong>within the same context</strong>. Without instance-level mixing, pre-softmax attention scores for different modalities can be hugely different.</p>
+
+            <h3 class="title">💡 Instance-Level Modality Mixing</h3>
+            <p>We propose a simple and scalable method: <strong>explicitly combine multiple modalities within each training instance</strong>. For example:</p>
+
+            <div style="background-color: rgba(240, 240, 240, 0.8);padding: 15px;margin: 15px 0;border-radius: 6px;border-left: 4px solid #3273dc;">
+              <p style="font-weight: bold; margin-bottom: 10px;">Cross-Lingual Format:</p>
+              <p style="margin: 5px 0;"><strong>Input:</strong> &lt;Chinese instruction&gt; &lt;English instruction&gt; Reply to both user instructions.</p>
+              <p style="margin: 5px 0;"><strong>Output:</strong> &lt;Chinese response&gt; &lt;English response&gt;</p>
+            </div>
+
+            <div style="background-color: rgba(240, 240, 240, 0.8);padding: 15px;margin: 15px 0;border-radius: 6px;border-left: 4px solid #3273dc;">
+              <p style="font-weight: bold; margin-bottom: 10px;">Cross-Modal Format:</p>
+              <p style="margin: 5px 0;"><strong>Input:</strong> &lt;text instruction&gt; &lt;image&gt; &lt;image-related instruction&gt; Reply to both user instructions.</p>
+              <p style="margin: 5px 0;"><strong>Output:</strong> &lt;text response&gt; &lt;image-related response&gt;</p>
+            </div>
 
                <div style="background-color: rgba(225, 200, 245, 0.4);margin: 0px;padding-top: 10px;padding-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;border: 2px solid black;border-radius: 6px;;margin-bottom: 20px;">
-                <p style="font-size: 20px; font-weight: bold;">&#127942; Desiderata </p>
-                <p> ✅  <strong>Isolate Memorization:</strong> In the middle panel of Figure 2, we see that the MemSinks model has significantly higher loss on the repeated stories than standard training.</p>
-                <p> ✅ <strong>Preserve General Capabilities:</strong> We see that MemSinks achieves comparable validation loss as standard training in the left panel of Figure 2. Moreover, the right panel of Figure 2 shows that MemSinks achieves a better tradeoff between removing memorization and preserving general capabilities than post-hoc methods.</p>
+                <p style="font-size: 20px; font-weight: bold;">🎯 Key Advantage</p>
+                <p>Instance-level modality mixing is <strong>more scalable</strong> than directly finetuning on conflict detection tasks. It does NOT require explicit conflicts within instructions—we simply repurpose existing datasets by concatenating examples from different modalities!</p>
               </div>
+
+            <h3 class="title">📊 Results: Attention Imbalance Reduction</h3>
             <center>
-            <img src="static/images/MemSinksVal.png" alt="Teaser Image" class="teaser-image" width  = "400px">
-            <img src="static/images/MemSinksMem.png" alt="Teaser Image" class="teaser-image" width  = "400px">
-            <img src="static/images/SeqTiedTradeoffInv.png" alt="Teaser Image" class="teaser-image" width  = "410px">
+            <img src="static/images/multilingual_finetune_attention.png" alt="Multilingual Finetuning Attention" class="teaser-image" width="200px">
+            <img src="static/images/multimodal_finetune_attention.png" alt="Multimodal Finetuning Attention" class="teaser-image" width="200px">
             </center>
           
         <p>
           <center>
-          <b><i>Fig 2: Performance of MemSinks.</i></b> (Left) MemSinks achieves comparable validation loss as standard training. (Center) MemSinks memorizes significantly less than standard training. (Right) MemSinks achieves a better tradeoff between removing memorization and preserving general capabilities than post-hoc methods.
+          <b><i>Fig 4: Attention Imbalance Reduction.</i></b> Instance-level modality mixing (dark blue) reduces attention imbalance between modalities by <strong>4×</strong> in cross-lingual settings and <strong>34%</strong> in cross-modal settings, far outperforming dataset-level mixing (gray).
+          </center>
+        </p>
+
+        <h3 class="title">📊 Results: Conflict Detection Performance</h3>
+            <center>
+            <img src="static/images/multilingual_finetune_performance.png" alt="Multilingual Finetuning Performance" class="teaser-image" width="200px">
+            <img src="static/images/multimodal_finetune_performance.png" alt="Multimodal Finetuning Performance" class="teaser-image" width="200px">
+            </center>
+          
+        <p>
+          <center>
+          <b><i>Fig 5: Conflict Detection Improvement.</i></b> Instance-level modality mixing boosts conflict detection by <strong>37%</strong> in cross-lingual settings and <strong>2×</strong> in cross-modal settings compared to dataset-level mixing.
           </center>
         </p>
       </div>
@@ -288,35 +296,34 @@
       </div>
       </section>
 
-        
-        
-    </div>
-  </section>
-
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container">
-          <h2 class="title">Scaling MemSinks to 1B Parameter Model</h2>
+          <h2 class="title">Validation on Downstream Tasks</h2>
           <div class="content has-text-justified">
             <p>
+              Does instance-level modality mixing improve performance on real-world benchmarks? We test on several hard vision-language datasets that require non-trivial reasoning over each domain.
             </p>
-            <h4 class="title">🔬 Experimental Setup</h4>
+            <h4 class="title">🔬 Benchmarks</h4>
             <ul style="margin-left: 20px;">
-              <li><strong>Dataset:</strong> Mixture of SlimPajama and Wikipedia documents</li>
-              <li><strong>Method:</strong> Upsampling to improve Wikipedia dataset performance</li>
-              <li><strong>Goal:</strong> Achieve good Wikipedia performance while avoiding verbatim memorization</li>
+              <li><strong>HardBLINK:</strong> Challenging vision-language reasoning</li>
+              <li><strong>SAT (Static & Dynamic):</strong> Visual reasoning tasks</li>
+              <li><strong>MMMU:</strong> Multimodal understanding benchmark</li>
             </ul>
             
-            Our results in Figure 3 validate MemSinks at larger scale and on real, heterogenous pretraining data!
             <center>
-              <img src="static/images/MemSinks17B.png" alt="Teaser Image" class="teaser-image" width  = "400px">
-              <img src="static/images/MemSinks360.png" alt="Teaser Image" class="teaser-image" width  = "400px">
+              <img src="static/images/instance_level_downstream.png" alt="Downstream Task Results" class="teaser-image" width="600px">
             </center>
             <p>
               <center>
-              <b><i>Fig 3: Scaling MemSinks to 1B Parameter Model.</i></b> Training loss curves for 1.7B (left) and 360M (right) parameter models trained on a mixture of Wikipedia and SlimPajama data. We observe that MemSinks models memorize less than standard training, while achieving comparable validation loss.
+              <b><i>Fig 6: Downstream Task Improvements.</i></b> Finetuning Qwen-2.5-VL on instance-level mixed data improves performance by 2.4% on HardBLINK, 2.4% on SAT (static), 4.4% on SAT (dynamic), and 1.2% on MMMU. These gains demonstrate that our method enhances overall reasoning capabilities, especially on datasets requiring substantive cross-modal reasoning.
               </center>
             </p>
+
+            <div style="background-color: rgba(173, 216, 230, 0.5);padding-left: 20px;padding-right: 20px;margin: 10px;padding-top: 10px;padding-bottom: 10px;width: 100%;border: 2px solid black;border-radius: 6px;">
+              <p style="font-size: 20px; font-weight: bold;">✨ Key Takeaway</p>
+              <p>Instance-level modality mixing not only improves conflict detection but also enhances real-world performance on challenging multimodal benchmarks—without requiring additional data curation.</p>
+            </div>
           </div>
     
             </section>
@@ -337,13 +344,11 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@inproceedings{
-        ghosal2025memorization,
-        title={Memorization Sinks: Isolating Memorization during {LLM} Training},
-        author={Gaurav Rohit Ghosal and Pratyush Maini and Aditi Raghunathan},
-        booktitle={Forty-second International Conference on Machine Learning},
-        year={2025},
-        url={https://openreview.net/forum?id=sRJrMPu5Uu}
+      <pre><code>@article{wu2025mitigating,
+        title={Mitigating Modal Imbalance in Multimodal Reasoning},
+        author={Chen Henry Wu and Neil Kale and Aditi Raghunathan},
+        institution={Carnegie Mellon University},
+        year={2025}
         }</code></pre>
     </div>
 </section>
